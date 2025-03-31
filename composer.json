@@ -1,0 +1,25 @@
+{
+    "name": "jdz/dump",
+    "type": "library",
+    "description": "JDZ simple file dumper helper",
+    "keywords": [
+        "JDZ",
+        "dump",
+        "helper"
+    ],
+    "homepage": "https://jdz.joffreydemetz.com/dump/",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Joffrey Demetz",
+            "email": "joffrey.demetz@gmail.com",
+            "homepage": "https://joffreydemetz.com",
+            "role": "Lead"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "JDZ\\Utils\\": "src"
+        }
+    }
+}
