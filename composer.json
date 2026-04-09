@@ -5,9 +5,10 @@
     "keywords": [
         "JDZ",
         "dump",
-        "helper"
+        "helper",
+        "core"
     ],
-    "homepage": "https://jdz.joffreydemetz.com/dump/",
+    "homepage": "https://jdz.joffreydemetz.com/dump",
     "license": "MIT",
     "authors": [
         {
@@ -17,9 +18,24 @@
             "role": "Lead"
         }
     ],
+    "require": {
+        "php": ">=8.2"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^11.0"
+    },
     "autoload": {
         "psr-4": {
             "JDZ\\Utils\\": "src"
         }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "JDZ\\Utils\\Tests\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": "phpunit --colors=always --testdox",
+        "test-coverage": "phpunit --coverage-html coverage"
     }
 }
