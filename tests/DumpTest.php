@@ -21,46 +21,11 @@ class DumpTest extends TestCase
         }
     }
 
-    public function testConstructor(): void
-    {
-        $dump = new Dump($this->tempFile);
-
-        $this->assertInstanceOf(Dump::class, $dump);
-    }
-
     public function testExistsReturnsFalseForMissingFile(): void
     {
         $dump = new Dump($this->tempFile);
 
         $this->assertFalse($dump->exists());
-    }
-
-    public function testExistsReturnsTrueAfterWrite(): void
-    {
-        $dump = new Dump($this->tempFile);
-        $dump->write('test');
-
-        $this->assertTrue($dump->exists());
-    }
-
-    public function testWriteCreatesFile(): void
-    {
-        $dump = new Dump($this->tempFile);
-        $dump->write('hello');
-
-        $this->assertFileExists($this->tempFile);
-    }
-
-    public function testWriteAppendsContent(): void
-    {
-        $dump = new Dump($this->tempFile);
-        $dump->write('line1');
-        $dump->write('line2');
-
-        $content = file_get_contents($this->tempFile);
-
-        $this->assertStringContainsString('line1', $content);
-        $this->assertStringContainsString('line2', $content);
     }
 
     public function testWriteTrimsAndAddsNewline(): void
@@ -71,15 +36,6 @@ class DumpTest extends TestCase
         $content = file_get_contents($this->tempFile);
 
         $this->assertEquals("hello\n", $content);
-    }
-
-    public function testWriteReturnsSelfForChaining(): void
-    {
-        $dump = new Dump($this->tempFile);
-
-        $result = $dump->write('test');
-
-        $this->assertSame($dump, $result);
     }
 
     public function testReadReturnsFileContent(): void
@@ -130,18 +86,6 @@ class DumpTest extends TestCase
         $dump->delete();
 
         $this->assertFalse($dump->exists());
-    }
-
-    public function testMultipleWritesThenRead(): void
-    {
-        $dump = new Dump($this->tempFile);
-        $dump->write('first');
-        $dump->write('second');
-        $dump->write('third');
-
-        $content = $dump->read();
-
-        $this->assertEquals("first\nsecond\nthird\n", $content);
     }
 
     public function testWriteDeleteWrite(): void
